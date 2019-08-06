@@ -8,6 +8,7 @@ services:
       - .:/usr/src/app
     ports:
       - 3000:3000
-    command: /sbin/init
+    command: npm install yarn -g
+    command: bundle exec rails server -p 3000 -b 0.0.0.0
     env_file: .env.dev
 
