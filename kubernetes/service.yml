@@ -1,0 +1,27 @@
+apiVersion: cloud.google.com/v1beta1
+kind: BackendConfig
+metadata:
+  name: kody-app-backend-config
+spec:
+  cdn:
+    enabled: true
+    cachePolicy:
+      includeHost: true
+      includeProtocol: true
+      includeQueryString: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kody-app
+  annotations:
+    beta.cloud.google.com/backend-config: '{"ports": {"80":"kody-app-backend-config"}}'
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  selector:
+    app: kody-app
+

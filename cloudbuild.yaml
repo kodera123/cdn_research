@@ -1,5 +1,5 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/zeals-sandbox/kody-app:fa2167', '.']
-images: ['gcr.io/zeals-sandbox/kody-app:fa2167']
+  args: ['build', '-t', 'gcr.io/zeals-sandbox/kody-app:fa2170', '.']
+images: ['gcr.io/zeals-sandbox/kody-app:fa2170']
 

@@ -17,7 +17,7 @@ spec:
         server: web
     spec:
       containers:
-      - image: gcr.io/zeals-sandbox/kody-app:fa2167
+      - image: gcr.io/zeals-sandbox/kody-app:fa2170
         name: kody-app
         ports:
           - containerPort: 3000
@@ -29,5 +29,6 @@ spec:
               secretKeyRef:
                 name: kody-secret
                 key: secret_key_base
+        command: ["bundle", "exec", "rake", "assets:precompile"]
         command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
 
