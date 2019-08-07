@@ -1,24 +1,37 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+GKE で CDN を利用する場合のrails application
+public/integration_plugins/index.js が対象
 
-Things you may want to cover:
+## Docker
 
-* Ruby version
+`docker-compose build`
+`docker-compose up`
 
-* System dependencies
+## deploy to GKE
 
-* Configuration
+`gcloud config list`
+`gcloud config set project {project_name}`
+`gcloud container clusters create [cluster_name] --machine-type=n1-standard-1 --zone=asia-northeast1 --num-nodes 1`
+`gcloud container clusters list`
+`kubectl config get-contexts`
 
-* Database creation
+`gcloud builds submit ./ --config cloudbuild.yaml`
+`gcloud builds list | grep {build_name}`
 
-* Database initialization
+`kubectl create secret generic [secret_name] --from-literal=secret_key_base=\`bundle exec rake secret\``
 
-* How to run the test suite
+`kubectl apply -f kubernetes/deployment.yml`
+`kubectl get pods`
 
-* Services (job queues, cache servers, search engines, etc.)
+`kubectl apply -f kubernetes/service.yaml`
+`kubectl get services`
 
-* Deployment instructions
+`curl EXTERNAL_IP/hoge`
 
-* ...
+## clean up
+
+`kubectl delete deployment {deployment_name}`
+`kubectl delete service {service_name}`
+`gcloud container clusters delete {cluster_name} --zone=asia-northeast1`
+
