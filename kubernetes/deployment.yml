@@ -17,7 +17,7 @@ spec:
         server: web
     spec:
       containers:
-      - image: gcr.io/zeals-sandbox/kody-app:fa2170
+      - image: gcr.io/{project_name}/kody-app:fa2170
         name: kody-app
         ports:
           - containerPort: 3000
